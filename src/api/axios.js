@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://saas-production-8b38.up.railway.app/api/v1',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://saas-production-94e6.up.railway.app/api/v1',
   timeout: Number(import.meta.env.VITE_API_TIMEOUT) || 30000,
   headers: {
     'Content-Type': 'application/json',
