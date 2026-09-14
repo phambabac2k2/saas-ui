@@ -425,38 +425,70 @@ const TenantManagement = () => {
                           >
                             <Check size={18} strokeWidth={3} />
                           </Button>
-                        ) : t.status === 'SUSPENDED' || t.status === 'INACTIVE' ? (
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="h-10 w-10 rounded-xl border-emerald-100 bg-emerald-50 text-emerald-600 hover:bg-emerald-100 shadow-sm transition-transform active:scale-95"
-                            onClick={() => showConfirm(t.tenantId, t.companyName, 'activate')}
-                            title="Activate Tenant"
-                          >
-                            <Check size={18} strokeWidth={3} />
-                          </Button>
-                        ) : (
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="h-10 w-10 rounded-xl border-slate-100 text-slate-400 hover:bg-slate-100 shadow-sm transition-transform active:scale-95"
-                            onClick={() => showConfirm(t.tenantId, t.companyName, 'deactivate')}
-                            title="Deactivate Tenant"
-                          >
-                            <Slash size={16} strokeWidth={3} />
-                          </Button>
-                        )}
-                        {t.status !== 'SUSPENDED' && (
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="h-10 w-10 rounded-xl border-red-50 bg-red-50 text-red-400 hover:bg-red-100 shadow-sm transition-transform active:scale-95"
-                            onClick={() => showConfirm(t.tenantId, t.companyName, 'suspend')}
-                            title="Suspend Tenant"
-                          >
-                            <Ban size={16} strokeWidth={3} />
-                          </Button>
-                        )}
+                        ) : t.status === 'ACTIVE' ? (
+                          <>
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="h-10 w-10 rounded-xl border-slate-100 text-slate-400 hover:bg-slate-100 shadow-sm transition-transform active:scale-95"
+                              onClick={() => showConfirm(t.tenantId, t.companyName, 'deactivate')}
+                              title="Deactivate Tenant"
+                            >
+                              <Slash size={16} strokeWidth={3} />
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="h-10 w-10 rounded-xl border-red-50 bg-red-50 text-red-400 hover:bg-red-100 shadow-sm transition-transform active:scale-95"
+                              onClick={() => showConfirm(t.tenantId, t.companyName, 'suspend')}
+                              title="Suspend Tenant"
+                            >
+                              <Ban size={16} strokeWidth={3} />
+                            </Button>
+                          </>
+                        ) : t.status === 'SUSPENDED' ? (
+                          <>
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="h-10 w-10 rounded-xl border-emerald-100 bg-emerald-50 text-emerald-600 hover:bg-emerald-100 shadow-sm transition-transform active:scale-95"
+                              onClick={() => showConfirm(t.tenantId, t.companyName, 'activate')}
+                              title="Activate Tenant"
+                            >
+                              <Check size={18} strokeWidth={3} />
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              disabled
+                              className="h-10 w-10 rounded-xl border-slate-100 text-slate-300 opacity-40 cursor-not-allowed shadow-none"
+                              title="Cannot deactivate a suspended tenant (must be active first)"
+                            >
+                              <Slash size={16} strokeWidth={3} />
+                            </Button>
+                          </>
+                        ) : t.status === 'INACTIVE' ? (
+                          <>
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="h-10 w-10 rounded-xl border-emerald-100 bg-emerald-50 text-emerald-600 hover:bg-emerald-100 shadow-sm transition-transform active:scale-95"
+                              onClick={() => showConfirm(t.tenantId, t.companyName, 'activate')}
+                              title="Activate Tenant"
+                            >
+                              <Check size={18} strokeWidth={3} />
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              disabled
+                              className="h-10 w-10 rounded-xl border-red-100/50 bg-red-50/30 text-red-300 opacity-40 cursor-not-allowed shadow-none"
+                              title="Cannot suspend an inactive tenant (must be active first)"
+                            >
+                              <Ban size={16} strokeWidth={3} />
+                            </Button>
+                          </>
+                        ) : null}
                       </div>
                     </TableCell>
                   </TableRow>
